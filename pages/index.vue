@@ -7,7 +7,9 @@
       <button v-show="searchInput !== ''" class="button" @click="clearSearch">Clear Search</button>
     </div>
 
-    <div class="container movies">
+    <Loading v-if="$fetchState.pending" />
+
+    <div v-else class="container movies">
       <div v-if="searchInput" id="movie-grid" class="movies-grid">
         <div v-for="(movie, idx) in searchedMovies" :key="idx" class="movie">
           <div class="movie-img">
@@ -34,7 +36,7 @@
       <div v-else id="movie-grid" class="movies-grid">
         <div v-for="(movie, idx) in movies" :key="idx" class="movie">
           <div class="movie-img">
-            <img :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`" alt="">
+            <img :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`" :alt="movie.title">
             <p class="review">{{ movie.vote_average }}</p>
             <p class="overview">{{ movie.overview }}</p>
           </div>
