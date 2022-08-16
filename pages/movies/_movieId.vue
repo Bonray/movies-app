@@ -9,7 +9,7 @@
       <div class="movie-content">
         <h1>Title: {{ movie.title }}</h1>
         <p class="movie-fact tagline">
-          <span>Tagline: </span>"{{ movie.tagline }}""
+          <span>Tagline: </span>"{{ movie.tagline }}"
         </p>
         <p class="movie-fact">
           <span>Released:</span>
@@ -45,11 +45,16 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      movie: null,
+      movie: '',
     }
   },
   async fetch() {
     await this.getSingleMovie();
+  },
+  head() {
+    return {
+      title: this.movie.title,
+    }
   },
   methods: {
     async getSingleMovie() {

@@ -74,6 +74,23 @@ export default {
     if (!this.searchInput) await this.getMovies();
     else await this.searchMovies();
   },
+  head() {
+    return {
+      title: 'Movies App - Latest Streaming Movie Info',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Get all the latest streaming movies in theaters & online'
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: 'movies, stream, stremaing',
+        },
+      ],
+    }
+  },
   methods: {
     async getMovies() {
       const { data } = await axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=17735fbb9638eca205193ecd3361df71&language=en-US&page=1`);
@@ -87,7 +104,7 @@ export default {
       this.searchInput = '';
       this.searchedMovies = [];
     }
-  }
+  },
 }
 </script>
 
